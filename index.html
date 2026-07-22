@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MYKA COMPRESSORES | O Coração da Sua Indústria Nunca Para</title>
+  <meta name="description" content="Especialistas em compressores industriais. Venda, locação e manutenção preventiva, preditiva e corretiva para garantir que sua produção nunca pare.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=Inter:wght@300;400;600&family=Black+Ops+One&family=Teko:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css?v=77">
+</head>
+<body>
+
+  <!-- TELA INICIAL / INTRO SCREEN -->
+  <div id="intro-screen" class="intro-overlay">
+    <!-- Contador de segundo plano -->
+    <div id="intro-counter" class="intro-bg-number">1</div>
+
+    <div class="intro-content">
+      <div class="intro-title-group">
+        <span class="intro-huge-word-motivos">MOTIVOS</span>
+        <span class="intro-sub-text">PARA SER PARCEIRO DA</span>
+      </div>
+      <div class="intro-divider"></div>
+      <div class="hud-logo intro-logo">
+        <span class="brand-text">MYKA</span>
+        <span class="brand-sub"><span>C</span><span>O</span><span>M</span><span>P</span><span>R</span><span>E</span><span>S</span><span>S</span><span>O</span><span>R</span><span>E</span><span>S</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VÍDEO DE FUNDO DO SITE -->
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="bg-video.webm" type="video/webm">
+  </video>
+
+  <!-- Canvas de Fundo 3D/Scrollytelling -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- HUD Interface / Header Float -->
+  <header class="hud-header">
+    <a href="#hero" class="hud-logo-link">
+      <div class="hud-logo">
+        <span class="brand-text">MYKA</span>
+        <span class="brand-sub"><span>C</span><span>O</span><span>M</span><span>P</span><span>R</span><span>E</span><span>S</span><span>S</span><span>O</span><span>R</span><span>E</span><span>S</span></span>
+      </div>
+    </a>
+
+    <!-- Menu de Navegação HUD (Responsivo) -->
+    <nav class="hud-nav" id="hud-navigation">
+      <a href="#hero" class="hud-logo-link mobile-only-logo">
+        <div class="hud-logo nav-logo">
+          <span class="brand-text">MYKA</span>
+          <span class="brand-sub"><span>C</span><span>O</span><span>M</span><span>P</span><span>R</span><span>E</span><span>S</span><span>S</span><span>O</span><span>R</span><span>E</span><span>S</span></span>
+        </div>
+      </a>
+      <a href="#quem-somos" class="nav-link">EMPRESA</a>
+      <a href="#servicos" class="nav-link">ATIVIDADES</a>
+      <a href="#manutencao" class="nav-link">MANUTENÇÃO</a>
+      <a href="#locacao" class="nav-link">LOCAÇÃO</a>
+      <a href="#venda" class="nav-link">VENDAS</a>
+      <a href="#contato" class="nav-link">CONTATO</a>
+    </nav>
+
+    <!-- Botão Hambúrguer para Mobile -->
+    <button class="menu-toggle" id="menu-toggle-btn" aria-label="Abrir Menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+  </header>
+
+
+  <main class="content-wrapper">
+
+    <!-- SEÇÃO 1: HERO -->
+    <section id="hero" class="scrolly-section active">
+      <div class="bg-section-number">1</div>
+      <div class="section-badge">1. ATUAÇÃO</div>
+      <h1 class="garrafal-title">A MYKA NO CORAÇÃO DA SUA<br>INDÚSTRIA.</h1>
+      <p class="section-desc">Trabalhamos com compressores de alta performance integrados ao coração da sua operação com monitoramento contínuo, suporte especializado e resposta ágil para manter sua linha produtiva sempre no ritmo. Sem paradas não planejadas, sem surpresas.</p>
+      
+      <div class="action-buttons">
+        <a href="#contato" class="btn btn-primary">CONTATO</a>
+        <button class="btn btn-secondary watch-btn" data-video="hero">
+          <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          ASSISTA
+        </button>
+      </div>
+
+
+    </section>
+
+    <!-- SEÇÃO 2: QUEM SOMOS -->
+    <section id="quem-somos" class="scrolly-section">
+      <div class="bg-section-number">2</div>
+      <div class="section-badge">2. EMPRESA</div>
+      <h2 class="garrafal-title">RESPONSABILIDADE.<br>PROFISSIONALISMO.<br>EXPERIÊNCIA.</h2>
+      <p class="section-desc">Com mais de 30 anos de experiência e reconhecimento nacional, somos especialistas na otimização de sistemas de ar comprimido. Unimos engenharia de ponta e suporte técnico dedicado para garantir a máxima eficiência, segurança e continuidade da linha de produção.</p>
+      
+      <div class="action-buttons">
+        <a href="#contato" class="btn btn-primary">CONTATO</a>
+        <button class="btn btn-secondary watch-btn" data-video="quem-somos">
+          <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          ASSISTA
+        </button>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3: SERVIÇOS (OVERVIEW) -->
+    <section id="servicos" class="scrolly-section">
+      <div class="bg-section-number">3</div>
+      <div class="section-badge">3. ATIVIDADES</div>
+      <h2 class="garrafal-title">MANUTENÇÃO.<br>LOCAÇÃO.<br>VENDA.</h2>
+      <p class="section-desc">Disponibilizamos soluções industriais integradas sob medida para otimizar a eficiência energética e produtividade dos compressores da planta industrial, atuando na manutenção, locação e vendas, garantindo total segurança e continuidade dos processos produtivos da sua indústria.</p>
+
+      <div class="action-buttons">
+        <a href="#contato" class="btn btn-primary">CONTATO</a>
+        <button class="btn btn-secondary watch-btn" data-video="servicos">
+          <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          ASSISTA
+        </button>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4: MANUTENÇÃO -->
+    <section id="manutencao" class="scrolly-section">
+      <div class="bg-section-number">4</div>
+      <div class="section-badge">4. MANUTENÇÃO</div>
+      <h2 class="garrafal-title">PREVENTIVA.<br>PREDITIVA.<br>CORRETIVA.</h2>
+      <p class="section-desc">Garantimos o funcionamento contínuo dos seus compressores com foco no prolongamento da vida útil dos equipamentos e na máxima eficiência energética da sua planta. Planejamos intervenções precisas e oferecemos suporte rápido para que sejam minimizadas as chances de paradas inesperadas.</p>
+      
+      <div class="action-buttons">
+        <a href="#contato" class="btn btn-primary">CONTATO</a>
+        <button class="btn btn-secondary watch-btn" data-video="manutencao">
+          <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          ASSISTA
+        </button>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 5: LOCAÇÃO -->
+    <section id="locacao" class="scrolly-section">
+      <div class="bg-section-number">5</div>
+      <div class="section-badge">5. LOCAÇÃO</div>
+      <h2 class="garrafal-title">DISPONIBILIDADE.<br>FLEXIBILIDADE.<br>AGILIDADE.</h2>
+      <p class="section-desc">Oferecemos soluções de locação para contratos de longo prazo, picos de demanda ou emergências, garantindo total continuidade da produção. Nossos contratos flexíveis com manutenção inclusa eliminam investimentos iniciais altos e asseguram previsibilidade total de custos mensais.</p>
+      
+      <div class="action-buttons">
+        <a href="#contato" class="btn btn-primary">CONTATO</a>
+        <button class="btn btn-secondary watch-btn" data-video="locacao">
+          <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          ASSISTA
+        </button>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 6: VENDA -->
+    <section id="venda" class="scrolly-section">
+      <div class="bg-section-number">6</div>
+      <div class="section-badge">6. VENDAS</div>
+      <h2 class="garrafal-title">PROCEDÊNCIA.<br>VARIEDADE.<br>PREÇO.</h2>
+      <p class="section-desc">Comercializamos compressores de parafuso e sistemas de ar comprimido de última geração com garantia de procedência. Oferecemos suporte completo com as melhores condições do mercado para assegurar alta performance para sua planta.</p>
+      
+      <div class="action-buttons">
+        <a href="#contato" class="btn btn-primary">CONTATO</a>
+        <button class="btn btn-secondary watch-btn" data-video="venda">
+          <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          ASSISTA
+        </button>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 7: CONTATO -->
+    <section id="contato" class="scrolly-section">
+      <div class="bg-section-number">7</div>
+      <div class="section-badge">7. CONTATO</div>
+      <h2 class="garrafal-title">CREDIBILIDADE.<br>CONFIANÇA.<br>PROTEÇÃO.</h2>
+      <p class="section-desc">Oferecemos suporte técnico especializado e atendimento ágil para sanar todas as suas dúvidas. Fale diretamente com nossos engenheiros para planejar as melhores soluções em compressores de ar e proteger a sua produção.</p>
+      
+      <div class="action-buttons">
+        <button class="btn btn-secondary watch-btn" data-video="contato">
+          <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          ASSISTA
+        </button>
+      </div>
+
+      <div class="contact-card">
+        <a href="https://api.whatsapp.com/send?phone=5515991899160&text=Olá!%20Estou%20no%20site%20da%20Myka%20e%20gostaria%20de%20falar%20com%20um%20especialista." target="_blank" class="contact-link whatsapp">
+          <span class="icon">
+            <svg class="whatsapp-card-icon" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-11.2-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+            </svg>
+          </span>
+          <span class="info">
+            <strong>WHATSAPP</strong>
+            <span>(15) 99189-9160</span>
+          </span>
+        </a>
+
+        <a href="tel:1530260998" class="contact-link phone">
+          <span class="icon">
+            <svg class="phone-card-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 62a370.66 370.66 0 0 1-160.6-160.6l62-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 78.79 3.2L12.79 67.2C5.39 74.6.79 84.8.79 96c0 229.7 186.3 416 416 416 11.2 0 21.4-4.6 28.8-12l64-64a24.13 24.13 0 0 0-2.2-38.2z"/>
+            </svg>
+          </span>
+          <span class="info">
+            <strong>TELEFONE</strong>
+            <span>(15) 3026-0998</span>
+          </span>
+        </a>
+
+        <a href="mailto:comercial@mykacompressores.com.br" class="contact-link email">
+          <span class="icon">
+            <svg class="email-card-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm-12.016 57.6L256 288 59.977 121.6h392.007zM48 400V166.4l194.27 165.13a21.986 21.986 0 0 0 27.46 0L464 166.4V400H48z"/>
+            </svg>
+          </span>
+          <span class="info">
+            <strong>E-MAIL</strong>
+            <span>comercial@mykacompressores.com.br</span>
+          </span>
+        </a>
+
+        <a href="https://maps.google.com/?q=Rua+Joana+Maria+Pereira,+406+-+Vila+Adélia,+Sorocaba+-+SP" target="_blank" class="contact-link location">
+          <span class="icon">
+            <svg class="location-card-icon" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"/>
+            </svg>
+          </span>
+          <span class="info">
+            <strong>LOCALIZAÇÃO</strong>
+            <span>Rua Joana Maria Pereira, 406 - Sorocaba, SP.</span>
+          </span>
+        </a>
+      </div>
+
+      <div class="footer-info">
+        <p class="copy">
+          <a href="https://www.previewstudio.com.br" target="_blank">DESENVOLVIDO POR PREVIEW STUDIO DIGITAL</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DE VÍDEO FUTURISTA -->
+  <div id="video-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <span id="modal-title" style="display:none;"></span>
+      <div class="video-container">
+        <!-- Simulação de Player Futurista do Robô -->
+        <div class="robot-video-simulation">
+          <div class="hud-scanner"></div>
+          
+          <!-- Legenda de Fala -->
+          <p class="robot-speech" id="robot-speech-text">
+            "Olá! Sou o mascote da Myka. Estou aqui para mostrar como mantemos os compressores da sua indústria operando com 100% de eficiência!"
+          </p>
+
+          <!-- Ondas Sonoras e Botão Fechar Discreto -->
+          <div class="bottom-controls">
+            <!-- Controle de Áudio: Onda Esquerda, Símbolo Play/Pause (Sem círculo), Onda Direita -->
+            <div class="audio-control-row">
+              <div class="audio-wave left-wave">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              
+              <button class="symbol-play-pause-btn" id="play-pause-btn" aria-label="Pausar / Reproduzir">
+                <span class="icon">⏸</span>
+              </button>
+              
+              <div class="audio-wave right-wave">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+            
+            <button class="discreet-close-btn" id="modal-close-btn-action">FECHAR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="app.js?v=77"></script>
+</body>
+</html>

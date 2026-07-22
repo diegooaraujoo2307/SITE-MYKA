@@ -1,0 +1,8 @@
+# Arquivos não otimizados (imagens pesadas que não estão em uso)
+mikron.png
+hf_*.png
+
+# Arquivos temporários e logs
+*.log
+.DS_Store
+Thumbs.db

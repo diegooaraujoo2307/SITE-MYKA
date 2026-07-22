@@ -1,0 +1,1431 @@
+/* ==========================================================================
+   MYKA COMPRESSORES - DARK MINIMALIST INDUSTRIAL STYLESHEET (MOBILE-FIRST)
+   ========================================================================== */
+
+:root {
+  --bg-color: #070a11;
+  --bg-card: rgba(14, 20, 33, 0.65);
+  --accent-cyan: #00E5FF;
+  --accent-blue: #0B72FF;
+  --accent-orange: #FF8C00;
+  --text-primary: #FFFFFF;
+  --text-secondary: #8E9BAE;
+  --font-garrafal: 'Anton', 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --border-hud: rgba(0, 229, 255, 0.2);
+  --glow-cyan: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory; /* CSS Scroll Snap ativado no eixo Y */
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+}
+
+/* --- CANVAS 3D BACKGROUND (REMOVIDO / PREPARADO PARA VÍDEO) --- */
+#bg-canvas {
+  display: none;
+}
+
+/* --- VÍDEO DE FUNDO FIXO --- */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* Cobre toda a tela sem distorção */
+  z-index: 0;              /* Atrás de todo o conteúdo */
+  opacity: 0.25;           /* Transparência sutil — presença sem distrair */
+  pointer-events: none;    /* Não interfere em cliques */
+  mix-blend-mode: screen;  /* Blend com o fundo escuro para integração natural */
+}
+
+/* --- HUD HEADER --- */
+.hud-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px calc(4vw + 16px);
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Garante que logo e hambúrguer ficam na mesma linha vertical */
+  background: linear-gradient(180deg, rgba(7, 10, 17, 0.9) 0%, rgba(7, 10, 17, 0) 100%);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hud-logo-link {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hud-logo-link:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+.hud-logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: max-content;
+}
+
+.brand-text {
+  font-family: 'Black Ops One', sans-serif;
+  font-size: 1.8rem;
+  font-weight: normal;
+  letter-spacing: 0; /* Remove qualquer espaço extra após a última letra */
+  color: var(--accent-cyan);
+  text-shadow: var(--glow-cyan);
+  line-height: 0.95;
+  display: block;
+}
+
+.brand-sub {
+  font-family: 'Teko', sans-serif;
+  font-size: 0.6rem; /* Altura 3 vezes menor que MYKA */
+  font-weight: normal;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5); /* Cinza 50% */
+  line-height: 0.85;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* --- HUD NAVIGATION & BURGER MENU (MOBILE-FIRST) --- */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: center; /* Alinha verticalmente ao centro do header, na mesma altura que a logo */
+  width: 26px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 150;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-toggle .bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-cyan);
+  box-shadow: var(--glow-cyan);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Menu Toggle Ativo (X) */
+.menu-toggle.open .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Navegação Mobile (Padrão) */
+.hud-nav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 50vw;
+  max-width: 240px;
+  height: 100vh;
+  background: rgba(7, 10, 17, 0.95);
+  border-left: 1px solid var(--border-hud);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+  z-index: 120;
+}
+
+/* Blur no fundo do wrapper do site quando o menu está aberto */
+body.menu-active .content-wrapper {
+  filter: blur(8px);
+  transition: filter 0.4s ease;
+}
+
+/* Transição de volta para o filtro */
+.content-wrapper {
+  transition: filter 0.4s ease;
+}
+
+.hud-nav.open {
+  right: 0;
+}
+
+.nav-link {
+  font-family: var(--font-garrafal);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 6px 12px;
+}
+
+.nav-logo {
+  border-bottom: 1px dashed rgba(0, 229, 255, 0.3);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-cyan);
+  transition: width 0.3s ease;
+  box-shadow: var(--glow-cyan);
+}
+
+.nav-link:hover {
+  color: var(--accent-cyan);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* --- SCROLL HUD INDICATOR --- */
+.scroll-hud {
+  position: fixed;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.scroll-bar-fill {
+  width: 2px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.scroll-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--scroll-height, 14.28%);
+  background: var(--accent-cyan);
+  box-shadow: var(--glow-cyan);
+  transition: height 0.2s ease-out;
+}
+
+.scroll-step-indicator {
+  font-family: var(--font-garrafal);
+  font-size: 0.65rem;
+  color: var(--accent-cyan);
+  writing-mode: vertical-rl;
+  letter-spacing: 2px;
+}
+
+/* --- CONTENT WRAPPER --- */
+.content-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  transition: filter 0.15s ease; /* Transição de foco acelerada para 0.15s */
+  will-change: filter;
+}
+
+body.is-scrolling .content-wrapper {
+  filter: blur(3px); /* Desfoque de movimento premium ao rolar */
+}
+
+.scrolly-section {
+  min-height: 100vh;
+  padding: 95px 16px calc(4vw + 16px) 16px; /* Ajustado para 95px para equilibrar o espaçamento superior da tag */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 92%;
+  max-width: 480px;
+  margin: 0 auto;
+  opacity: 0.4;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+}
+
+.scrolly-section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Números gigantes em plano de fundo transparentes */
+.bg-section-number {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-garrafal);
+  font-size: 55vh; /* Número monumental */
+  font-weight: normal;
+  line-height: 1;
+  color: var(--accent-cyan);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  transition: right 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  opacity: 0;
+  right: -25vw;
+}
+
+.scrolly-section.active .bg-section-number {
+  opacity: 0.05; /* Retornado para 5% conforme solicitação final */
+  right: -10vw; /* Mais deslocado para a direita, mostrando menos do número */
+}
+/* Efeito dinâmico: Número acende ao rolar e suaviza ao parar */
+body.is-scrolling .scrolly-section.active .bg-section-number {
+  opacity: 0.25; /* Opacidade alta temporária durante o scroll */
+  transition: opacity 0.2s ease;
+}
+
+.section-badge {
+  font-family: var(--font-garrafal);
+  font-size: 0.75rem; /* Aumentado de 0.58rem para melhor destaque */
+  letter-spacing: 1.5px; /* Aumentado espaçamento para melhorar leitura em fonte menor */
+  color: var(--accent-cyan);
+  background: rgba(0, 229, 255, 0.06); /* Ligeiramente mais transparente */
+  border: 1px solid rgba(0, 229, 255, 0.15); /* Borda mais fina */
+  padding: 4px 10px; /* Ajustado levemente para acompanhar o tamanho da fonte */
+  border-radius: 4px; /* Formato HUD retangular com cantos suaves */
+  margin-bottom: 24px; /* Ajustado para 24px para igualar o espaçamento superior (visível abaixo do header) */
+  text-transform: uppercase;
+}
+
+/* LETRAS GARRAFAIS ESTILIZADAS COM ANTON */
+.garrafal-title {
+  font-family: var(--font-garrafal);
+  font-size: 1.7rem; /* Reduzido de 2.5rem */
+  font-weight: normal;
+  line-height: 1.15;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  
+  display: flex;
+  flex-wrap: wrap; /* Permite que as palavras quebrem linha naturalmente */
+  column-gap: 8px; /* Espaço entre palavras */
+}
+
+/* --- ANIMAÇÕES DE BRILHO NEON CINTILANTE (SUTIL E ORGÂNICO) --- */
+@keyframes shimmer-cyan-glow {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.35), 0 0 16px rgba(0, 229, 255, 0.15);
+  }
+  28% {
+    text-shadow: 0 0 11px rgba(0, 229, 255, 0.45), 0 0 20px rgba(0, 229, 255, 0.2);
+  }
+  33% {
+    text-shadow: 0 0 9px rgba(0, 229, 255, 0.38), 0 0 17px rgba(0, 229, 255, 0.18);
+  }
+  72% {
+    text-shadow: 0 0 15px rgba(0, 229, 255, 0.65), 0 0 26px rgba(0, 229, 255, 0.35);
+  }
+}
+
+@keyframes shimmer-red-glow {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(255, 62, 62, 0.35), 0 0 16px rgba(255, 62, 62, 0.15);
+  }
+  24% {
+    text-shadow: 0 0 12px rgba(255, 62, 62, 0.5), 0 0 22px rgba(255, 62, 62, 0.2);
+  }
+  30% {
+    text-shadow: 0 0 9px rgba(255, 62, 62, 0.38), 0 0 17px rgba(255, 62, 62, 0.18);
+  }
+  76% {
+    text-shadow: 0 0 15px rgba(255, 62, 62, 0.65), 0 0 26px rgba(255, 62, 62, 0.35);
+  }
+}
+
+@keyframes shimmer-orange-glow {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(255, 140, 0, 0.35), 0 0 16px rgba(255, 140, 0, 0.15);
+  }
+  35% {
+    text-shadow: 0 0 12px rgba(255, 140, 0, 0.5), 0 0 22px rgba(255, 140, 0, 0.2);
+  }
+  42% {
+    text-shadow: 0 0 9px rgba(255, 140, 0, 0.38), 0 0 17px rgba(255, 140, 0, 0.18);
+  }
+  68% {
+    text-shadow: 0 0 15px rgba(255, 140, 0, 0.65), 0 0 26px rgba(255, 140, 0, 0.35);
+  }
+}
+
+/* Destaque de cor da marca (Ciano Neon - Ciclo de 4.4s) */
+.garrafal-title .brand-highlight {
+  font-family: 'Black Ops One', sans-serif;
+  color: var(--accent-cyan) !important;
+  animation: shimmer-cyan-glow 4.4s infinite ease-in-out;
+}
+
+/* Destaque avermelhado para a palavra CORAÇÃO e PROTEJA (Vermelho Neon - Ciclo de 3.7s e delay) */
+.garrafal-title .heart-highlight {
+  color: #FF3E3E !important;
+  animation: shimmer-red-glow 3.7s infinite ease-in-out 0.4s;
+}
+
+/* Destaque laranja neon apenas (sem alteração de tamanho) (Laranja Neon - Ciclo de 5.2s e delay) */
+.garrafal-title .warning-highlight {
+  color: var(--accent-orange) !important;
+  animation: shimmer-orange-glow 5.2s infinite ease-in-out 0.9s;
+}
+
+/* Alinhamento pelo topo: todas as palavras da linha COM A MYKA. ficam retas no topo */
+#contato .garrafal-title .title-line {
+  align-items: flex-start !important;
+}
+
+/* Cada palavra-bloco da linha alinha pela linha de base — garante que o ponto final assente junto com MYKA */
+#contato .garrafal-title .title-word {
+  display: flex !important;
+  align-items: baseline !important; /* Baseline alinha o ponto final na mesma linha de escrita que MYKA */
+}
+
+/* Ampliação da palavra MYKA na seção de contato */
+#contato .garrafal-title .brand-highlight {
+  font-size: 1.85em;
+  line-height: 1;          /* Line-height natural — remove o gap fantasma do 0.72 */
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* Ponto final alinha pelo topo junto com MYKA, ficando na mesma altura dela */
+#contato .garrafal-title .brand-punctuation {
+  font-size: 1.85em;       /* Mesma escala de MYKA */
+  font-family: var(--font-garrafal);
+  color: var(--text-primary) !important;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: top;     /* Cola no topo junto com MYKA */
+}
+
+/* Ampliação da palavra MYKA na seção inicial (Hero) para alto contraste */
+#hero .garrafal-title .brand-highlight {
+  font-size: 2.1em; /* Aumentado de 1.5em para 2.1em para destacar massivamente na página inicial */
+  line-height: 0.75; /* Evita que o tamanho gigante empurre a linha para cima */
+  display: inline-block; /* Reativado como inline-block para suportar a correção de deslocamento do line-height */
+  vertical-align: bottom; /* Alinha precisamente a base do bloco com a linha de escrita das demais */
+}
+
+/* Estrutura das linhas do título garrafal para suportar quebras com <br> */
+.garrafal-title .title-line {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  width: 100%;
+  align-items: baseline; /* Garante que todas as palavras de tamanhos diferentes se alinhem perfeitamente pela base da escrita */
+}
+
+.garrafal-title .title-line:not(:last-child) {
+  margin-bottom: 0.22em; /* Aumenta o espaçamento vertical entre as linhas do título */
+}
+
+/* Destaque laranja industrial ampliado para a palavra INDÚSTRIA (Laranja Neon - Ciclo de 4.8s e delay) */
+.garrafal-title .industry-highlight {
+  font-size: 1.45em; /* Aumentado ainda mais para 1.45em */
+  color: var(--accent-orange) !important;
+  letter-spacing: 1px; /* Estilização de espaçamento */
+  animation: shimmer-orange-glow 4.8s infinite ease-in-out 1.3s;
+}
+
+/* Efeito sutil de surgimento palavra por palavra */
+.garrafal-title .title-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px) translateZ(0); /* Deslocamento de partida */
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--word-index) * 0.12s); /* Delay em cascata por palavra */
+}
+
+/* Escalonamento de tamanho das três palavras (efeito cascata visual) nas demais seções */
+.scrolly-section:not(#hero) .garrafal-title .title-line:nth-child(1) {
+  font-size: 1.2em;
+}
+.scrolly-section:not(#hero) .garrafal-title .title-line:nth-child(2) {
+  font-size: 0.95em;
+}
+.scrolly-section:not(#hero) .garrafal-title .title-line:nth-child(3) {
+  font-size: 0.75em;
+}
+
+#manutencao .garrafal-title .title-line:nth-child(1) {
+  font-size: 1.5em !important;
+}
+#manutencao .garrafal-title .title-line:nth-child(2) {
+  font-size: 1.3em !important;
+}
+#manutencao .garrafal-title .title-line:nth-child(3) {
+  font-size: 0.9em !important;
+}
+
+@media (max-width: 767px) {
+  #hero .garrafal-title .title-line:nth-child(1),
+  #contato .garrafal-title .title-line:nth-child(1) {
+    font-size: 1.25em;
+  }
+  #hero .garrafal-title .title-line:nth-child(2),
+  #contato .garrafal-title .title-line:nth-child(2) {
+    font-size: 1.1em;
+  }
+  #hero .garrafal-title .title-line:nth-child(3),
+  #contato .garrafal-title .title-line:nth-child(3) {
+    font-size: 0.75em;
+  }
+}
+
+
+
+/* Quando rola para cima, a cascata de delay também pode ser ligeiramente deslocada */
+body.scroll-up .garrafal-title .title-word {
+  transform: translateY(-20px) translateZ(0);
+}
+
+.scrolly-section.active .garrafal-title .title-word {
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
+
+.section-desc {
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-top: auto; /* Empurra o bloco texto+botões para a base da seção flex */
+  margin-bottom: 20px;
+  font-weight: 300;
+  width: calc(100% + 14px);
+  max-width: calc(100% + 14px);
+  text-align: justify;
+  border-left: 2px solid rgba(0, 229, 255, 0.3); /* Indicador HUD ciano sutil */
+  padding-left: 12px;
+  margin-left: -14px;
+  box-sizing: border-box;
+}
+
+/* BUTTONS */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-left: 0;
+  flex-wrap: nowrap; /* Impede quebra de linha para manter lado a lado */
+  margin-top: 8px; /* Espaço fixo logo abaixo do texto descritivo */
+  
+  /* Escondido por padrão, surge com delay */
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition-delay: 0s; /* Some imediatamente quando a seção perde o foco */
+  pointer-events: none;
+}
+
+.scrolly-section.active .action-buttons {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s; /* Surge 0.5s após a seção ficar ativa */
+  pointer-events: auto;
+}
+
+.btn {
+  font-family: var(--font-garrafal);
+  font-size: 0.7rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border: none;
+  flex: 1 1 0; /* Garante que ambos tenham exatamente a mesma largura */
+  min-width: 0; /* Evita que o conteúdo empurre o tamanho */
+}
+
+.btn-primary,
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+  backdrop-filter: blur(10px);
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-secondary:hover,
+.btn-secondary:active {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 100%) !important;
+  color: #000 !important;
+  border-color: transparent !important;
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-2px);
+}
+
+.play-icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* PILLS DE SERVIÇO */
+.services-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.pill {
+  font-family: var(--font-garrafal);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  padding: 10px 14px;
+  background: rgba(14, 20, 33, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--accent-cyan);
+  border-radius: 4px;
+  color: var(--text-primary);
+}
+
+/* SCROLL HINT */
+.scroll-hint {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+}
+
+.chevron-down {
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid var(--accent-cyan);
+  border-bottom: 2px solid var(--accent-cyan);
+  transform: rotate(45deg);
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: rotate(45deg) translate(0, 0); }
+  50% { transform: rotate(45deg) translate(4px, 4px); }
+}
+
+/* CARD DE CONTATO */
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Reduzido de 8px para compactar na vertical */
+  width: 100%;
+  margin-bottom: 8px; /* Reduzido de 12px */
+  margin-top: auto;
+  
+  /* Escondido por padrão, surge com delay */
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition-delay: 0s;
+  pointer-events: none;
+}
+
+.scrolly-section.active .contact-card {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s; /* Surge 0.5s após a seção ficar ativa */
+  pointer-events: auto;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 8px; /* Reduzido o padding lateral para 8px para liberar mais espaço para o endereço */
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-primary);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+  border-color: var(--accent-cyan);
+  transform: translateX(4px);
+}
+
+.contact-link .icon {
+  font-size: 1.2rem; /* Reduzido de 1.5rem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; /* Reduzido de 32px para alinhar de forma mais compacta */
+  flex-shrink: 0; /* Impede o amassamento do ícone */
+}
+
+.whatsapp-card-icon,
+.phone-card-icon,
+.email-card-icon,
+.location-card-icon {
+  width: 18px; /* Reduzido de 24px para economizar altura */
+  height: 18px; /* Reduzido de 24px */
+  fill: var(--accent-cyan); /* Todos acompanham a cor ciano neon do tema e dos títulos */
+  transition: fill 0.3s ease;
+}
+
+/* Compensação de tamanho para o ícone do WhatsApp que parecia menor */
+.whatsapp-card-icon {
+  width: 21px !important;
+  height: 21px !important;
+}
+
+.contact-link .info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px; /* Reduzido de 2px */
+}
+
+.contact-link .info strong {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.75rem; /* Reduzido para 0.75rem */
+  letter-spacing: 1px;
+  color: var(--accent-cyan);
+}
+
+.contact-link .info span {
+  font-family: var(--font-body);
+  font-size: 0.65rem; /* Reduzido de 0.75rem para caber "SP" na mesma linha em telas menores */
+  color: var(--text-secondary);
+}
+
+.footer-info {
+  font-family: var(--font-body);
+  font-size: 0.55rem; /* Reduzido para 0.55rem */
+  color: var(--text-secondary);
+  line-height: 1.5;
+  text-align: center;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 6px; /* Reduzido de 8px */
+  white-space: nowrap; /* Garante que fique em uma única linha no mobile */
+}
+
+/* Espaçamento no topo reajustado para 95px para limpar o cabeçalho fixo */
+#contato {
+  padding-top: 95px !important; /* Igualado a 95px com os outros slides */
+  padding-bottom: 12px !important; /* Puxa o rodapé mais para baixo, aproveitando a margem inferior */
+}
+
+/* Compactações exclusivas da seção de contato para compensar a descida do topo */
+#contato .section-badge {
+  margin-bottom: 24px !important; /* Igualado a 24px com os outros slides */
+}
+
+#contato .garrafal-title {
+  font-size: 1.5rem !important; /* Ligeiramente menor para economizar espaço vertical */
+  margin-bottom: 8px !important;
+}
+
+#contato .section-desc {
+  margin-top: auto !important; /* Força o empurrão do texto explicativo para baixo */
+  margin-bottom: 20px !important; /* Alinha com a margem inferior padrão das outras seções */
+}
+
+#contato .action-buttons {
+  max-width: none !important;
+  width: 100% !important;
+  margin-bottom: 12px !important;
+  margin-top: 8px !important;
+}
+
+#contato .action-buttons .btn {
+  max-width: none !important;
+  width: 100% !important;
+  flex: 1 1 100% !important;
+}
+
+#contato .contact-card {
+  margin-top: 8px !important; /* Alinha com a margem superior padrão dos botões das outras seções */
+}
+
+.footer-info .copy {
+  margin-top: 0; /* Removido o espaçamento */
+  font-size: inherit; /* Herda o tamanho menor de 0.55rem */
+  opacity: 0.8;
+}
+
+.footer-info .copy a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.footer-info .copy a:hover {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+/* --- MODAL VÍDEO FUTURISTA --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(7, 10, 17, 0.9);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-content {
+  background: #070a11;
+  border: none;
+  box-shadow: none;
+  width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  max-width: 100vw;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.video-container {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.robot-video-simulation {
+  background: linear-gradient(180deg, rgba(7, 10, 17, 0.35) 0%, rgba(7, 10, 17, 0.8) 100%), url('mikron.webp') no-repeat center center;
+  background-size: cover;
+  background-color: #070a11;
+  border: none;
+  border-radius: 0;
+  padding: 30px 24px 24px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.hud-scanner {
+  display: none !important;
+}
+
+.audio-control-row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 18px;
+  justify-content: center;
+  margin-bottom: 4px;
+  z-index: 10;
+  width: auto;
+}
+
+.symbol-play-pause-btn {
+  background: transparent;
+  border: none;
+  color: var(--accent-cyan);
+  font-size: 2.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+  padding: 0 12px;
+}
+
+.symbol-play-pause-btn:hover {
+  color: #ffffff;
+  text-shadow: 0 0 25px var(--accent-cyan);
+  transform: scale(1.15);
+}
+
+.symbol-play-pause-btn .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: margin 0.2s ease;
+}
+
+/* Ajuste visual fino do play (triângulo) para parecer perfeitamente centrado */
+.symbol-play-pause-btn:not(.playing) .icon {
+  margin-left: 5px;
+}
+
+.symbol-play-pause-btn.playing .icon {
+  margin-left: 0;
+}
+
+.bottom-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+  z-index: 5;
+}
+
+.audio-wave {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  height: 16px;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+.audio-wave span {
+  width: 3px;
+  height: 100%;
+  background: var(--accent-cyan);
+  animation: wave 1s infinite ease-in-out;
+}
+
+.audio-wave span:nth-child(2) { animation-delay: 0.2s; }
+.audio-wave span:nth-child(3) { animation-delay: 0.4s; }
+.audio-wave span:nth-child(4) { animation-delay: 0.6s; }
+.audio-wave span:nth-child(5) { animation-delay: 0.8s; }
+
+.audio-wave.paused span {
+  animation-play-state: paused !important;
+  height: 4px !important;
+  opacity: 0.4;
+}
+
+.discreet-close-btn {
+  font-family: var(--font-garrafal);
+  font-size: 0.75rem;
+  padding: 10px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+.discreet-close-btn:hover {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 100%) !important;
+  color: #000 !important;
+  border-color: transparent !important;
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-2px);
+}
+}
+
+@keyframes scan {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+.robot-avatar {
+  display: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.robot-speech {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-top: auto;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
+  font-weight: 400;
+  z-index: 1;
+  text-align: center;
+  background: rgba(5, 8, 14, 0.75);
+  padding: 14px 28px;
+  border-radius: 6px;
+  width: 90%;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  max-height: none;
+  overflow-y: visible;
+}
+
+.audio-wave {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  height: 16px;
+  z-index: 1;
+}
+
+.audio-wave span {
+  width: 3px;
+  height: 100%;
+  background: var(--accent-cyan);
+  animation: wave 1s infinite ease-in-out;
+}
+
+.audio-wave span:nth-child(2) { animation-delay: 0.2s; }
+.audio-wave span:nth-child(3) { animation-delay: 0.4s; }
+.audio-wave span:nth-child(4) { animation-delay: 0.6s; }
+.audio-wave span:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes wave {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+
+/* RESPONSIVIDADE (DESKTOP ENHANCEMENT) */
+@media (min-width: 768px) {
+  .hud-header {
+    padding-left: 80px !important; /* Logo afastada 80px da borda esquerda */
+    padding-right: 80px !important; /* Menu afastado 80px da borda direita */
+  }
+
+  .hud-header .brand-text {
+    font-size: 2.4rem;
+  }
+
+  .hud-header .brand-sub {
+    font-size: 0.8rem;
+  }
+
+  #hero .garrafal-title .title-line:nth-child(2) {
+    font-size: 0.85em !important; /* Reduz a fonte de 'DA SUA INDÚSTRIA.' no desktop para o efeito escalonado */
+  }
+
+  .menu-toggle {
+    display: none !important;
+  }
+
+  .hud-nav {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: none !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 20px !important;
+    margin: 0 !important;
+  }
+
+  .nav-link {
+    font-size: 0.9rem !important;
+    padding: 4px 8px !important;
+    white-space: nowrap !important;
+  }
+
+  .mobile-only-logo {
+    display: none !important; /* Oculta a logo do menu no desktop */
+  }
+
+  /* Seção de contato em tela cheia no desktop */
+  #contato {
+    max-width: none !important;
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 80px !important; /* Alinha textos e cards com a logo do cabeçalho */
+    padding-right: 80px !important; /* Alinha o final dos cards com o menu do cabeçalho */
+  }
+
+  #contato .contact-card {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important; /* 4 cards lado a lado ocupando 100% da largura útil */
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-bottom: 24px !important;
+  }
+
+  #contato .action-buttons {
+    max-width: calc(25% - 12px) !important;
+    width: 100% !important;
+    margin-bottom: 16px !important;
+    margin-top: 12px !important;
+  }
+
+  #contato .action-buttons .btn {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  #contato .section-desc {
+    width: calc(50% - 8px + 19px) !important;
+    max-width: calc(50% - 8px + 19px) !important;
+    text-align: justify !important;
+  }
+  
+  /* Seção em tela cheia no desktop para suportar os números em tela cheia no canto direito */
+  .scrolly-section {
+    max-width: none !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding-top: 110px !important; /* Define padding-top fixo de 110px para equilibrar o espaçamento superior da tag no desktop */
+    padding-left: 80px !important; /* Alinha os textos e elementos com a logo do cabeçalho */
+    padding-right: 80px !important; /* Respiro lateral direito simétrico */
+  }
+
+  /* Ajuste de escala e posicionamento dos números gigantes no desktop */
+  .bg-section-number {
+    font-size: 90vh !important;
+    right: -25vw !important;
+  }
+
+  .scrolly-section.active .bg-section-number {
+    right: -6vw !important;
+    opacity: 0.05 !important;
+  }
+
+  body.is-scrolling .scrolly-section.active .bg-section-number {
+    opacity: 0.25 !important;
+  }
+
+  .garrafal-title,
+  #contato .garrafal-title {
+    font-size: 3.5rem !important;
+  }
+
+  .section-badge {
+    font-size: 0.88rem !important;
+  }
+
+  .section-desc {
+    font-size: 0.95rem;
+    width: calc(50vw + 19px);
+    max-width: calc(50vw + 19px);
+    padding-left: 16px;
+    border-left-width: 3px;
+    margin-left: -19px;
+  }
+
+  .action-buttons {
+    max-width: 50vw;
+    width: 50vw;
+    margin-left: 0;
+    gap: 16px;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 14px 24px; /* Botões maiores no desktop */
+    font-size: 0.85rem;
+    min-width: 0;
+  }
+}
+
+/* ==========================================================================
+   TELA INICIAL / INTRO SCREEN (LOADING DE 3 SEGUNDOS)
+   ========================================================================== */
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #070a11; /* Fundo neutro sólido para ocultar o site e otimizar o carregamento de fundo */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.intro-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Contador em Segundo Plano no Intro */
+.intro-bg-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-garrafal);
+  font-size: 70vh;
+  line-height: 1;
+  color: var(--accent-cyan);
+  opacity: 0.035;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  will-change: transform, opacity;
+}
+
+.intro-bg-number.pulse-number {
+  animation: number-trigger 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes number-trigger {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.15;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.035;
+  }
+}
+
+.intro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+  z-index: 10;
+  animation: intro-zoom 2s ease-out forwards;
+}
+
+@keyframes intro-zoom {
+  0% {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Grupo de Títulos com Alinhamento Centrado */
+.intro-title-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.intro-huge-word-motivos {
+  font-family: var(--font-garrafal);
+  font-size: 3.2rem;
+  line-height: 0.95;
+  color: var(--accent-cyan);
+  letter-spacing: 2px;
+  animation: shimmer-cyan-glow 4.4s infinite ease-in-out;
+}
+
+.intro-sub-text {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem; /* Ajustado para casar visualmente com a largura do MOTIVOS acima */
+  letter-spacing: 5px;
+  margin-right: -5px; /* Compensa o offset final */
+  color: var(--text-secondary);
+  margin-top: 14px;
+  text-transform: uppercase;
+}
+
+.intro-divider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+  box-shadow: var(--glow-cyan);
+  margin: 22px 0 16px 0;
+}
+
+.intro-logo {
+  transform: scale(1.5);
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+/* Ampliação da logo na tela de carregamento para efeito dramático */
+.intro-logo .brand-text {
+  font-size: 2.8rem !important;
+  letter-spacing: 1.5px !important;
+}
+
+.intro-logo .brand-sub {
+  font-size: 0.95rem !important;
+  letter-spacing: 1px !important;
+}
+
+@media (max-width: 767px) {
+  .intro-huge-word-motivos {
+    font-size: 2.8rem; /* Retornado ao valor original do mobile */
+    letter-spacing: 4px;
+    margin-right: -4px;
+  }
+  
+  .intro-sub-text {
+    font-size: 0.62rem; /* Retornado ao valor original do mobile */
+    letter-spacing: 3px;
+    margin-right: 0;
+    margin-top: 10px;
+  }
+  
+  .intro-logo {
+    transform: scale(1.25);
+  }
+}
+
+/* Modal Responsivo Tela Cheia no Mobile */
+@media (max-width: 767px) {
+  .modal-overlay {
+    padding: 0;
+  }
+
+  .modal-content {
+    border-radius: 0;
+    border: none;
+    height: 100dvh;
+    max-height: 100dvh;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .video-container {
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+  }
+
+  .robot-video-simulation {
+    margin-bottom: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    border: none;
+    border-radius: 0;
+    padding: 30px 20px 24px 20px;
+    background-size: cover;
+  }
+
+  .robot-speech {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    width: 95%;
+    max-height: none;
+    overflow-y: visible;
+  }
+  
+}
