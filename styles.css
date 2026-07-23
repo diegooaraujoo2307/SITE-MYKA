@@ -524,6 +524,18 @@ body.is-scrolling .scrolly-section.active .bg-section-number {
   #contato .garrafal-title .title-line:nth-child(3) {
     font-size: 0.75em;
   }
+
+  .footer-info {
+    font-size: 0.45rem !important;
+    padding: 4px 10px !important;
+  }
+
+  #contato {
+    padding-bottom: 45px !important;
+  }
+  #contato .contact-card {
+    margin-bottom: 35px !important;
+  }
 }
 
 
@@ -598,9 +610,9 @@ body.scroll-up .garrafal-title .title-word {
 
 .btn-primary,
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 229, 255, 0.06);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 229, 255, 0.15);
   box-shadow: none;
   backdrop-filter: blur(10px);
 }
@@ -759,21 +771,29 @@ body.scroll-up .garrafal-title .title-word {
 }
 
 .footer-info {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
   font-family: var(--font-body);
   font-size: 0.55rem; /* Reduzido para 0.55rem */
   color: var(--text-secondary);
   line-height: 1.5;
   text-align: center;
-  width: 100%;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 6px; /* Reduzido de 8px */
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 16px;
+  background: rgba(10, 15, 25, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   white-space: nowrap; /* Garante que fique em uma única linha no mobile */
+  box-sizing: border-box;
 }
 
 /* Espaçamento no topo reajustado para 95px para limpar o cabeçalho fixo */
 #contato {
   padding-top: 95px !important; /* Igualado a 95px com os outros slides */
-  padding-bottom: 12px !important; /* Puxa o rodapé mais para baixo, aproveitando a margem inferior */
+  padding-bottom: 45px !important; /* Garante respiro amplo na base para não encostar no rodapé fixo */
 }
 
 /* Compactações exclusivas da seção de contato para compensar a descida do topo */
@@ -806,6 +826,7 @@ body.scroll-up .garrafal-title .title-word {
 
 #contato .contact-card {
   margin-top: 8px !important; /* Alinha com a margem superior padrão dos botões das outras seções */
+  margin-bottom: 32px !important; /* Afasta o último card (LOCALIZAÇÃO) do rodapé fixo */
 }
 
 .footer-info .copy {
@@ -997,9 +1018,9 @@ body.scroll-up .garrafal-title .title-word {
   align-items: center;
   justify-content: center;
   letter-spacing: 1px;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 229, 255, 0.06);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 229, 255, 0.15);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   text-transform: uppercase;

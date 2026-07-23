@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Lógica do Menu Hambúrguer (Mobile)
   const menuToggleBtn = document.getElementById('menu-toggle-btn');
   const hudNavigation = document.getElementById('hud-navigation');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinks = document.querySelectorAll('#hud-navigation a');
 
   // Separar os títulos das seções em blocos de palavras/linhas para efeito em cascata
   const titleElements = document.querySelectorAll('.garrafal-title');
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
       speech: '"Você sabia que a Myka cuida de todas as etapas do seu ar comprimido? Oferecemos um serviço completo que une manutenção preventiva para evitar falhas, locação flexível para atender suas emergências ou picos de produção, e venda de equipamentos modernos de alta durabilidade. Seja qual for a sua necessidade atual, temos a solução certa, do tamanho exato da sua empresa. Cuidamos de tudo para que você possa focar no que faz de melhor: fazer a sua indústria produzir e crescer sem limites!"'
     },
     'manutencao': {
-      title: 'PREVENTIVA. PREDITIVA. CORRETIVA.',
+      title: 'PREVENÇÃO. PREDIÇÃO. CORREÇÃO.',
       speech: '"Para que sua fábrica nunca pare por imprevistos, nossa equipe atua em três frentes essenciais. Com a manutenção preventiva, limpamos e ajustamos tudo no tempo certo. Com a preditiva, usamos tecnologia avançada para antecipar problemas antes que eles aconteçam. E se algo der errado, nossa corretiva rápida entra em ação imediatamente para reestabelecer o seu ar comprimido. É segurança máxima para proteger o seu investimento e manter a produtividade lá no alto. Pode confiar, nós cuidamos de cada detalhe!"'
     },
     'locacao': {
